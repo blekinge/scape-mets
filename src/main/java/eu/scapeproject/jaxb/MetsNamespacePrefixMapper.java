@@ -9,6 +9,8 @@ public class MetsNamespacePrefixMapper extends NamespacePrefixMapper {
             return "mets";
         }else if(namespaceUri.toLowerCase().equals("http://purl.org/dc/elements/1.1/")){
             return "dc";
+        }else if(namespaceUri.toLowerCase().equals("http://www.loc.gov/standards/premis")){
+            return "premis";
         }else{
             return suggestion;
         }

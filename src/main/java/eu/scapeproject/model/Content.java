@@ -10,6 +10,10 @@ public class Content {
     private String mimeType;
     private String label;
 
+    private Content(){
+        super();
+    }
+    
     public Content(Identifier id, URI uri) {
         super();
         this.id = id;

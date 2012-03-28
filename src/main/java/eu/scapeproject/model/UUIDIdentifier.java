@@ -19,8 +19,8 @@ public class UUIDIdentifier implements Identifier {
         this.uuid = UUID.fromString(uuid);
     }
     
-    public String getDescritption() {
-        return "A Identifier using UUIDs";
+    public String getType() {
+        return "UUID";
     }
 
     public String getValue() {

@@ -68,12 +68,7 @@ public class MetsDocument {
         public MetsDocument build() {
             this.admSec = new MetsADM();
             this.dmdSec = new MetsDMD(entity.getId().getValue());
-            this.dmdSec.getDc().addRights("test rights 1");
-            this.dmdSec.getDc().addRights("test rights 2");
-            this.dmdSec.getDc().setTitle("test title");
-            this.dmdSec.getDc().addLanguage("german");
-            this.dmdSec.getDc().addLanguage("magyar");
-            this.dmdSec.getDc().addLanguage("english");
+            this.dmdSec.setDc(entity.getDescriptive());
             MetsRightsMD rightsMD = new MetsRightsMD(entity.getId().getValue());
             MetsDigiProvMD digiProvMD = new MetsDigiProvMD(entity.getId().getValue());
             MetsTechMD techMD = new MetsTechMD(entity.getId().getValue());
@@ -86,6 +81,7 @@ public class MetsDocument {
             this.structMap = new HashSet<MetsFileDiv>();
             for (Representation rep : entity.getRepresentations()) {
                 MetsFileGrp fileGroup = new MetsFileGrp(rep.getId().getValue());
+                digiProvMD.getProvenance().addAll(rep.getProvenance());
                 for (Content content : rep.getContents()) {
                     fileGroup.addFile(new MetsFile(content.getId().getValue(), content.getUri()));
                     this.structMap.add(new MetsFileDiv(content.getMimeType(), content.getLabel(),content.getId().getValue()));
