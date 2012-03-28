@@ -2,7 +2,6 @@ package eu.scapeproject.mets;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -11,7 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="admSec",namespace="mets")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class MetsADM {
-    private final List<MetsTechMD> techMDs = new ArrayList<MetsTechMD>();
+    private final List<MetsTechMD> techMD = new ArrayList<MetsTechMD>();
     private final List<MetsSourceMD> sourceMD = new ArrayList<MetsSourceMD>();
     private final List<MetsDigiProvMD> digiProvMD = new ArrayList<MetsDigiProvMD>();
     private final List<MetsRightsMD> rightsMD = new ArrayList<MetsRightsMD>();
@@ -22,11 +21,11 @@ public class MetsADM {
     }
     
     public List<MetsTechMD> getTechMD() {
-        return techMDs;
+        return techMD;
     }
 
     public void addTechMD(MetsTechMD techMD) {
-        this.techMDs.add(techMD);
+        this.techMD.add(techMD);
     }
 
     public List<MetsSourceMD> getSourceMD() {

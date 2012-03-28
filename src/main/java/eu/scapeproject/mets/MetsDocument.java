@@ -1,12 +1,13 @@
 package eu.scapeproject.mets;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -22,6 +23,8 @@ public class MetsDocument {
     private MetsADM admSec;
     private MetsDMD dmdSec;
     private Set<MetsFileGrp> fileGrp;
+    @XmlElementWrapper(name="structMap")
+    @XmlElement(name="div")
     private Set<MetsFileDiv> structMap;
 
     private MetsDocument() {
@@ -85,7 +88,7 @@ public class MetsDocument {
                 MetsFileGrp fileGroup = new MetsFileGrp(rep.getId().getValue());
                 for (Content content : rep.getContents()) {
                     fileGroup.addFile(new MetsFile(content.getId().getValue(), content.getUri()));
-                    this.structMap.add(new MetsFileDiv(content.getMimeType(), content.getLabel(), content.getId().getValue()));
+                    this.structMap.add(new MetsFileDiv(content.getMimeType(), content.getLabel(),content.getId().getValue()));
                 }
                 this.fileGrp.add(fileGroup);
             }
