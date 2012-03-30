@@ -75,11 +75,11 @@ public abstract class TestUtil {
     }
 
     private static MetsTechMD createRandomTechMD(Representation r) {
-        TextMDMetadata textMd = new TextMDMetadata(r.getId().getValue());
-        textMd.setEncoding("UTF-8");
-        textMd.setLanguage("en");
-        textMd.setTextNote("a note");
-        return textMd;
+        return new TextMDMetadata.Builder()
+                .encoding("UTF-8")
+                .language("en")
+                .textNote("a note")
+                .build();
     }
 
     private static MetsSourceMD createRandomSourceMD(Representation r) {
