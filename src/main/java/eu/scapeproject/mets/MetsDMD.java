@@ -15,7 +15,7 @@ import eu.scapeproject.dc.DCMetadata;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class MetsDMD {
     @XmlElement(name="mdWrap",namespace="http://www.loc.gov/METS/")
-    private DCMetadata dc=new DCMetadata();
+    private DCMetadata dc;
     @XmlElement(namespace="http://www.loc.gov/METS/")
     private String id;
 

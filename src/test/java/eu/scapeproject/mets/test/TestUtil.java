@@ -40,13 +40,13 @@ public abstract class TestUtil {
     }
 
     private static DCMetadata createRandomDCMetadata() {
-        DCMetadata dc=new DCMetadata();
-        dc.setCreator("test-creator");
-        dc.setDescription("test-description");
-        dc.setFormat("test-format");
-        dc.setSubject("test-subject");
-        dc.setTitle("test-title");
-        return dc;
+        return new DCMetadata.Builder()
+                .creator("test-creator")
+                .description("test-description")
+                .format("test-format")
+                .subject("test-subject")
+                .title("test-title")
+                .build();
     }
 
     public static Set<Representation> createRandomRepresentations() {
@@ -65,8 +65,8 @@ public abstract class TestUtil {
     }
 
     private static MetsADM createRandomAdministrative(Representation r) {
-        MetsADM adm=new MetsADM();
-        MetsRightsMD rightsMd=new MetsRightsMD(r.getId().getValue());
+        MetsADM adm = new MetsADM();
+        MetsRightsMD rightsMd = new MetsRightsMD(r.getId().getValue());
         rightsMd.addStatement(createRandomPremisRightsStatement());
         adm.addRightsMD(rightsMd);
         adm.addSourceMD(createRandomSourceMD(r));
@@ -75,7 +75,7 @@ public abstract class TestUtil {
     }
 
     private static MetsTechMD createRandomTechMD(Representation r) {
-        TextMDMetadata textMd=new TextMDMetadata(r.getId().getValue());
+        TextMDMetadata textMd = new TextMDMetadata(r.getId().getValue());
         textMd.setEncoding("UTF-8");
         textMd.setLanguage("en");
         textMd.setTextNote("a note");
@@ -83,72 +83,78 @@ public abstract class TestUtil {
     }
 
     private static MetsSourceMD createRandomSourceMD(Representation r) {
-        MetsSourceMD sourceMd=new MetsSourceMD(r.getId().getValue());
+        MetsSourceMD sourceMd = new MetsSourceMD(r.getId().getValue());
         sourceMd.setDcRecord(createRandomDCMetadata());
         return sourceMd;
     }
 
     private static PremisRightsStatement createRandomPremisRightsStatement() {
-        PremisRightsTermOfGrant termOfGrant=new PremisRightsTermOfGrant();
-        termOfGrant.setStartDate(new Date());
-        termOfGrant.setEndDate(new Date());
-        
-        PremisRightsGranted granted=new PremisRightsGranted();
-        granted.setAct("replicate");
-        granted.setRestriction("none");
-        granted.setTermOfGrant(termOfGrant);
-        granted.setRightsGrantedNote("note");
-        
-        PremisRightsCopyright copyright=new PremisRightsCopyright();
-        copyright.setCopyrightJurisdiction("the jurisdiction");
-        copyright.setCopyrightNote("the note");
-        copyright.setCopyrightStatus("granted");
-        copyright.setCopyrightStatusDeterminationDate(new Date());
-        
-        PremisRightsLicenseInformation license=new PremisRightsLicenseInformation();
-        license.setLicenseIdentifier(new UUIDIdentifier());
-        license.setLicenseTerms("the license terms");
-        
-        
-        PremisRightsStatuteInformation statute=new PremisRightsStatuteInformation();
-        statute.setStatuteCitation("the citation");
-        statute.setStatuteInformationsDeterminationDate(new Date());
-        statute.setStatuteJurisdiction("the jurisdiction");
-        statute.setStatuteNote("the note");
-        
-        PremisLinkingAgentIdentifier agent=new PremisLinkingAgentIdentifier();
-        agent.setLinkingAgentIdentifier(new UUIDIdentifier());
-        agent.setLinkingAgentRole("MANAGER");
-        
-        PremisLinkingObjectIdentifer object=new PremisLinkingObjectIdentifer();
-        object.setObjectIdentifier(new UUIDIdentifier());
-        object.setLinkingObjectRole("PARENT");
-        
-        PremisRightsStatement st=new PremisRightsStatement();
-        st.setCopyrightInformation(copyright);
-        st.setLicenseInformation(license);
-        st.setLinkingAgentIdentifier(Arrays.asList(agent));
-        st.setLinkingObjectIdentifier(Arrays.asList(object));
-        st.setRightsGranted(Arrays.asList(granted));
-        st.setRightsStatementIdentifier(new UUIDIdentifier());
-        st.setStatuteInformation(Arrays.asList(statute));
-        st.setRightsBasis(PremisRightsStatement.Basis.COPYRIGHT);
-        return st;
+        PremisRightsTermOfGrant termOfGrant = new PremisRightsTermOfGrant.Builder()
+                .startDate(new Date())
+                .endDate(new Date())
+                .build();
+
+        PremisRightsGranted granted = new PremisRightsGranted.Builder()
+                .act("replicate")
+                .restriction("none")
+                .termOfGrant(termOfGrant)
+                .rightsGrantedNote("note")
+                .build();
+
+        PremisRightsCopyright copyright = new PremisRightsCopyright.Builder()
+                .copyrightJurisdiction("the jurisdiction")
+                .copyrightNote("the note")
+                .copyrightStatus("granted")
+                .copyrightStatusDeterminationDate(new Date())
+                .build();
+
+        PremisRightsLicenseInformation license = new PremisRightsLicenseInformation.Builder()
+                .licenseIdentifier(new UUIDIdentifier())
+                .licenseTerms("the license terms")
+                .build();
+
+        PremisRightsStatuteInformation statute = new PremisRightsStatuteInformation.Builder()
+                .statuteCitation("the citation")
+                .statuteInformationsDeterminationDate(new Date())
+                .statuteJurisdiction("the jurisdiction")
+                .statuteNote("the note")
+                .build();
+
+        PremisLinkingAgentIdentifier agent = new PremisLinkingAgentIdentifier.Builder()
+                .linkingAgentIdentifier(new UUIDIdentifier())
+                .linkingAgentRole("MANAGER")
+                .build();
+
+        PremisLinkingObjectIdentifer object = new PremisLinkingObjectIdentifer.Builder()
+                .objectIdentifier(new UUIDIdentifier())
+                .linkingObjectRole("PARENT")
+                .build();
+
+        return new PremisRightsStatement.Builder()
+                .copyrightInformation(copyright)
+                .licenseInformation(license)
+                .linkingAgentIdentifier(Arrays.asList(agent))
+                .linkingObjectIdentifier(Arrays.asList(object))
+                .rightsGranted(Arrays.asList(granted))
+                .rightsStatementIdentifier(new UUIDIdentifier())
+                .statuteInformation(Arrays.asList(statute))
+                .rightsBasis(PremisRightsStatement.Basis.COPYRIGHT)
+                .build();
     }
-    
 
     private static List<PremisEvent> createRandomProvenance() {
-        List<PremisEvent> provenance=new LinkedList<PremisEvent>();
-        PremisEvent event1=new PremisEvent();
-        PremisAgent agent=new PremisAgent();
+        List<PremisEvent> provenance = new LinkedList<PremisEvent>();
+        PremisAgent agent = new PremisAgent();
         agent.setId(new UUIDIdentifier());
         agent.setId(new UUIDIdentifier());
         agent.setName("test-agent");
         agent.setType("person");
-        event1.setId(new UUIDIdentifier());
-        event1.setAgents(Arrays.asList(agent));
-        event1.setDate(new Date());
-        event1.setDescription("testevent description");
+        PremisEvent event1 = new PremisEvent.Builder()
+                .id(new UUIDIdentifier())
+                .agents(Arrays.asList(agent))
+                .date(new Date())
+                .description("testevent description")
+                .build();
         provenance.add(event1);
         return provenance;
     }
