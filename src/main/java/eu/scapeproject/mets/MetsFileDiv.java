@@ -17,7 +17,7 @@ public class MetsFileDiv {
     @XmlAttribute(name = "label")
     private String label;
     @XmlJavaTypeAdapter(MetsFilePtrAdapter.class)
-    @XmlElement(name="filePtr")
+    @XmlElement(name="filePtr",namespace="http://www.loc.gov/METS/")
     private String fileId;
 
     private MetsFileDiv() {

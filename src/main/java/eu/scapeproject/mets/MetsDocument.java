@@ -26,8 +26,8 @@ public class MetsDocument {
     private MetsDMD dmdSec;
     @XmlElement(namespace="http://www.loc.gov/METS/")
     private Set<MetsFileGrp> fileGrp;
-    @XmlElementWrapper(name="structMap")
-    @XmlElement(name="div")
+    @XmlElementWrapper(name="structMap",namespace="http://www.loc.gov/METS/")
+    @XmlElement(name="div",namespace="http://www.loc.gov/METS/")
     private Set<MetsFileDiv> structMap;
 
     private MetsDocument() {
