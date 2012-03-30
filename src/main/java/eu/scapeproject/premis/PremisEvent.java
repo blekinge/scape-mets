@@ -1,11 +1,13 @@
-package eu.scapeproject.model.premis;
+package eu.scapeproject.premis;
 
 import java.util.Date;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -14,15 +16,22 @@ import eu.scapeproject.model.IntellectualEntity;
 
 @XmlRootElement(name = "event", namespace = "http://www.loc.gov/standards/premis")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(namespace = "http://www.loc.gov/standards/premis")
 public class PremisEvent {
+    @XmlElement(namespace="http://www.loc.gov/standards/premis")
     private Identifier id;
+    @XmlElement(namespace="http://www.loc.gov/standards/premis")
     private String type;
+    @XmlElement(namespace="http://www.loc.gov/standards/premis")
     private Date date;
+    @XmlElement(namespace="http://www.loc.gov/standards/premis")
     private String description;
+    @XmlElement(namespace="http://www.loc.gov/standards/premis")
     private String shortOutcome;
+    @XmlElement(namespace="http://www.loc.gov/standards/premis")
     private String longOutcome;
+    @XmlElement(name="agents",namespace="http://www.loc.gov/standards/premis")
     private List<PremisAgent> agents;
+    @XmlElement(name="entities",namespace="http://www.loc.gov/standards/premis")
     private List<IntellectualEntity> entities;
     
     public Identifier getId() {

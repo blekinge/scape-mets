@@ -5,12 +5,15 @@ import java.util.Set;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name="fileGrp",namespace="mets")
+@XmlRootElement(name="fileGrp",namespace="http://www.loc.gov/METS/")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class MetsFileGrp {
+    @XmlElement(namespace="http://www.loc.gov/METS/")
     private String id;
+    @XmlElement(namespace="http://www.loc.gov/METS/")
     private Set<MetsFile> files=new HashSet<MetsFile>();
 
     private MetsFileGrp(){

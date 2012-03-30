@@ -5,16 +5,21 @@ import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-@XmlRootElement(name="admSec",namespace="mets")
+@XmlRootElement(name="admSec",namespace="http://www.loc.gov/METS/")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class MetsADM {
+    @XmlElement(namespace="http://www.loc.gov/METS/")
     private final List<MetsTechMD> techMD = new ArrayList<MetsTechMD>();
+    @XmlElement(namespace="http://www.loc.gov/METS/")
     private final List<MetsSourceMD> sourceMD = new ArrayList<MetsSourceMD>();
+    @XmlElement(namespace="http://www.loc.gov/METS/")
     private final List<MetsDigiProvMD> digiProvMD = new ArrayList<MetsDigiProvMD>();
+    @XmlElement(namespace="http://www.loc.gov/METS/")
     private final List<MetsRightsMD> rightsMD = new ArrayList<MetsRightsMD>();
-
     
     public MetsADM(){
         

@@ -20,8 +20,11 @@ import eu.scapeproject.model.Representation;
 @XmlType(namespace = "http://www.loc.gov/METS/")
 public class MetsDocument {
     private static SimpleDateFormat dateFormat = new SimpleDateFormat();
+    @XmlElement(namespace="http://www.loc.gov/METS/")
     private MetsADM admSec;
+    @XmlElement(namespace="http://www.loc.gov/METS/")
     private MetsDMD dmdSec;
+    @XmlElement(namespace="http://www.loc.gov/METS/")
     private Set<MetsFileGrp> fileGrp;
     @XmlElementWrapper(name="structMap")
     @XmlElement(name="div")
@@ -69,25 +72,22 @@ public class MetsDocument {
             this.admSec = new MetsADM();
             this.dmdSec = new MetsDMD(entity.getId().getValue());
             this.dmdSec.setDc(entity.getDescriptive());
-            MetsRightsMD rightsMD = new MetsRightsMD(entity.getId().getValue());
             MetsDigiProvMD digiProvMD = new MetsDigiProvMD(entity.getId().getValue());
-            MetsTechMD techMD = new MetsTechMD(entity.getId().getValue());
-            MetsSourceMD sourceMD = new MetsSourceMD(entity.getId().getValue());
-            this.admSec.addRightsMD(rightsMD);
-            this.admSec.addDigiProvMD(digiProvMD);
-            this.admSec.addSourceMD(sourceMD);
-            this.admSec.addTechMD(techMD);
             this.fileGrp = new HashSet<MetsFileGrp>();
             this.structMap = new HashSet<MetsFileDiv>();
             for (Representation rep : entity.getRepresentations()) {
                 MetsFileGrp fileGroup = new MetsFileGrp(rep.getId().getValue());
                 digiProvMD.getProvenance().addAll(rep.getProvenance());
+                this.admSec.getRightsMD().addAll(rep.getAdministrative().getRightsMD());
+                this.admSec.getSourceMD().addAll(rep.getAdministrative().getSourceMD());
+                this.admSec.getTechMD().addAll(rep.getAdministrative().getTechMD());
                 for (Content content : rep.getContents()) {
                     fileGroup.addFile(new MetsFile(content.getId().getValue(), content.getUri()));
                     this.structMap.add(new MetsFileDiv(content.getMimeType(), content.getLabel(),content.getId().getValue()));
                 }
                 this.fileGrp.add(fileGroup);
             }
+            this.admSec.addDigiProvMD(digiProvMD);
             return new MetsDocument(this);
         }
     }

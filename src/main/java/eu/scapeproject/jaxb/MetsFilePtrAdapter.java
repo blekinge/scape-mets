@@ -20,7 +20,7 @@ public class MetsFilePtrAdapter extends XmlAdapter<MetsFilePtrAdapter.FilePtr, S
         return null;
     }
 
-    @XmlRootElement(name = "filePtr", namespace = "mets")
+    @XmlRootElement(name = "filePtr", namespace = "http://www.loc.gov/METS/")
     @XmlAccessorType(XmlAccessType.FIELD)
     public static class FilePtr {
         @XmlAttribute(name = "fileId")

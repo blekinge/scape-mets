@@ -16,6 +16,7 @@ import eu.scapeproject.model.Content;
 import eu.scapeproject.model.IntellectualEntity;
 import eu.scapeproject.model.Representation;
 import eu.scapeproject.model.UUIDIdentifier;
+import eu.scapeproject.textmd.TextMDMetadata;
 
 import static org.junit.Assert.*;
 
@@ -77,7 +78,7 @@ public class MetsDocumentTest {
         IntellectualEntity e = TestUtil.createRandomEntity();
         MetsDocument doc = new MetsDocument.Builder(e).build();
         Marshaller metsMarshaller = JAXBContext.newInstance(MetsDocument.class, MetsDigiProvMD.class, MetsFile.class, MetsFileDiv.class, MetsFileGrp.class,
-                MetsRightsMD.class, MetsSourceMD.class, MetsTechMD.class, MetsADM.class, MetsDMD.class).createMarshaller();
+                MetsRightsMD.class, MetsSourceMD.class, MetsTechMD.class, MetsADM.class, MetsDMD.class,TextMDMetadata.class).createMarshaller();
         metsMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
         metsMarshaller.setProperty("com.sun.xml.bind.namespacePrefixMapper", new MetsNamespacePrefixMapper());
         metsMarshaller.marshal(doc, System.out);

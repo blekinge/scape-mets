@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import eu.scapeproject.jaxb.MetsFilePtrAdapter;
 
-@XmlRootElement(name = "div", namespace = "mets")
+@XmlRootElement(name = "div", namespace = "http://www.loc.gov/METS/")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class MetsFileDiv {
     @XmlAttribute(name = "type")

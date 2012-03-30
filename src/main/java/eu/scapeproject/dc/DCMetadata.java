@@ -1,34 +1,44 @@
-package eu.scapeproject.mets;
+package eu.scapeproject.dc;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement(name = "dc", namespace = "http://purl.org/dc/elements/1.1/")
-@XmlType(namespace = "http://purl.org/dc/elements/1.1/")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DCMetadata {
     // private String date;
+    @XmlElement(namespace="http://purl.org/dc/elements/1.1/")
     private String title;
+    @XmlElement(namespace="http://purl.org/dc/elements/1.1/")
     private String creator;
+    @XmlElement(namespace="http://purl.org/dc/elements/1.1/")
     private String coverage;
+    @XmlElement(namespace="http://purl.org/dc/elements/1.1/")
     private String description;
+    @XmlElement(namespace="http://purl.org/dc/elements/1.1/")
     private String format;
+    @XmlElement(namespace="http://purl.org/dc/elements/1.1/")
     private String subject;
+    @XmlElement(namespace="http://purl.org/dc/elements/1.1/")
     private String type;
-    @XmlElementWrapper(name = "lanuages")
+    @XmlElementWrapper(name = "lanuages",namespace="http://purl.org/dc/elements/1.1/")
     private List<String> language = new ArrayList<String>();
-    @XmlElementWrapper(name = "publishers")
+    @XmlElementWrapper(name = "publishers",namespace="http://purl.org/dc/elements/1.1/")
     private List<String> publisher = new ArrayList<String>();
-    @XmlElementWrapper(name = "sources")
+    @XmlElementWrapper(name = "sources",namespace="http://purl.org/dc/elements/1.1/")
     private List<String> sources = new ArrayList<String>();
-    @XmlElementWrapper(name = "relations")
+    @XmlElementWrapper(name = "relations",namespace="http://purl.org/dc/elements/1.1/")
     private List<String> relations = new ArrayList<String>();
-    @XmlElementWrapper(name = "contributors")
+    @XmlElementWrapper(name = "contributors",namespace="http://purl.org/dc/elements/1.1/")
     private List<String> contributors = new ArrayList<String>();
-    @XmlElementWrapper(name = "rights")
+    @XmlElementWrapper(name = "rights",namespace="http://purl.org/dc/elements/1.1/")
     private List<String> rights = new ArrayList<String>();
 
     public String getTitle() {

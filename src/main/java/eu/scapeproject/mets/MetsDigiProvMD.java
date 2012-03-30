@@ -9,12 +9,14 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import eu.scapeproject.model.premis.PremisEvent;
+import eu.scapeproject.premis.PremisEvent;
 
-@XmlRootElement(name = "digiProvMD", namespace = "mets")
+@XmlRootElement(name = "digiProvMD", namespace = "http://www.loc.gov/METS/")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class MetsDigiProvMD {
+    @XmlElement(namespace="http://www.loc.gov/METS/")
     private String id;
+    @XmlElementWrapper(name="mdWrap",namespace="http://www.loc.gov/METS/")
     private List<PremisEvent> provenance=new LinkedList<PremisEvent>();
 
     private MetsDigiProvMD() {

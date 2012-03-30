@@ -2,7 +2,7 @@ package eu.scapeproject.model;
 
 import java.util.Set;
 
-import eu.scapeproject.mets.DCMetadata;
+import eu.scapeproject.dc.DCMetadata;
 
 public class IntellectualEntity {
     private Identifier id;

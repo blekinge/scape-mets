@@ -9,7 +9,9 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "dmdSec", namespace = "mets")
+import eu.scapeproject.dc.DCMetadata;
+
+@XmlRootElement(name = "dmdSec", namespace = "http://www.loc.gov/METS/")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class MetsDMD {
     @XmlElement(name="mdWrap")

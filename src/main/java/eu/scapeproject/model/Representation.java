@@ -3,12 +3,14 @@ package eu.scapeproject.model;
 import java.util.List;
 import java.util.Set;
 
-import eu.scapeproject.model.premis.PremisEvent;
+import eu.scapeproject.mets.MetsADM;
+import eu.scapeproject.premis.PremisEvent;
 
 public class Representation {
     private Identifier id;
     private Set<Content> contents;
     private List<PremisEvent> provenance;
+    private MetsADM administrative;
 
     public Identifier getId() {
         return id;
@@ -32,6 +34,14 @@ public class Representation {
 
     public void setProvenance(List<PremisEvent> provenance) {
         this.provenance = provenance;
+    }
+
+    public MetsADM getAdministrative() {
+        return administrative;
+    }
+
+    public void setAdministrative(MetsADM administrative) {
+        this.administrative = administrative;
     }
 
 }
